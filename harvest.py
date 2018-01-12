@@ -73,6 +73,12 @@ def print_pairing_info(melon_types):
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
+    melon_code = {}
+    for melon_type in melon_types:
+        melon_code[melon_type.code] = melon_type
+    return melon_code
+
+
 
     
 
@@ -80,21 +86,62 @@ def make_melon_type_lookup(melon_types):
 # Part 2   #
 ############
 
+
+
 class Melon(object):
     """A melon in a melon harvest."""
+    def __init__(self, melon_id, melon_type, shape_rating, color_rating, harvested_from, harvested_by):
+        self.melon_type = melon_type
+        self.shape_rating = shape_rating
+        self.color_rating = color_rating
+        self.harvested_from = harvested_from
+        self.harvested_by = harvested_by
+        self.id = melon_id
 
     # Fill in the rest
     # Needs __init__ and is_sellable methods
+    def is_sellable(self):
+        return self.color_rating > 5 and self.shape_rating > 5 and self.harvested_from != 3
+
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
+    melons = []
+    melon_by_type = make_melon_type_lookup(melon_types)
 
-    # Fill in the rest
+    melon1 = Melon(1, melon_by_type['yw'], 8, 7, 2, 'Sheila')
+    melons.append(melon1)
+
+    melon2 = Melon(2, melon_by_type['yw'], 3, 4, 2, 'Sheila')
+    melons.append(melon2)
+
+
+    melon3 = Melon(3, melon_by_type['yw'], 9, 8, 3, 'Sheila')
+    melons.append(melon3)
+
+    melon4 = Melon(4, melon_by_type['cas'], 10, 6, 35, 'Sheila')
+    melons.append(melon4)
+
+    melon5 = Melon(5, melon_by_type['cren'], 8, 9, 35, 'Michael')
+    melons.append(melon5)
+
+    melon6 = Melon(6, melon_by_type['cren'], 8, 2, 35, 'Michael')
+    melons.append(melon6)
+
+    melon7 = Melon(7, melon_by_type['cren'], 2, 3, 4, 'Michael')
+    melons.append(melon7)
+
+    melon8 = Melon(8, melon_by_type['musk'], 6, 7, 4, 'Michael')
+    melons.append(melon8)
+
+    melon9 = Melon(9, melon_by_type['yw'], 7, 10, 3, 'Sheila')
+    melons.append(melon9)
+
+    return melons
 
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
-
-    # Fill in the rest 
+    
 
 
 
